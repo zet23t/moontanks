@@ -15,11 +15,6 @@ local function other_tanks_by_dist(x,y,tanks)
   return list
 end
 
-local function copy(tab)
-  local t = {}
-  for i,v in pairs(tab) do t[i] = v end
-  return t
-end
 
 local function aim_and_shoot_at(tx,ty)
   local dx,dy = tx-x,ty-y
