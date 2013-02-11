@@ -22,3 +22,10 @@ function HSVtoRGB(h, s, v)
  
   return math.floor(r*255), math.floor(g*255), math.floor(b*255)
 end
+
+
+function copy(tab)
+  local t = {}
+  for i,v in pairs(tab) do t[i] = v end
+  return t
+end
