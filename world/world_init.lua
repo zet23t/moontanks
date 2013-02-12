@@ -1,4 +1,15 @@
+-- these constants are available in the AI scripts
+constant = {
+  PROJECTILE_SPEED = 3;
+  TANK_RADIUS = 8;
+  MAP_WIDTH = love.graphics.getWidth();
+  MAP_HEIGHT = love.graphics.getHeight();
+  MAX_TURNSPEED = .04;
+  MAX_BEARSPEED = .08;
+}
+
 dofile "world/util.lua"
+dofile "world/tank.lua"
 dofile "world/tankworld.lua"
 
 world_state = world:create()
