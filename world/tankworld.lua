@@ -80,6 +80,11 @@ function world:draw_exploded_tank(x,y)
   end)
 end
 
+--- Queue drawing a missed exploded projectile on the ground.
+-- @param x X coordinate of the projectile
+-- @param y Y coordinate of the projectile
+-- @param vx X velocity coordinate of the projectile
+-- @param vy Y velocity coordinate of the projectile
 function world:draw_exploded_projectile(x,y,vx,vy)
   self:queue_canvas_draw(function()
     love.graphics.setColor(0,0,0,140)
@@ -91,6 +96,10 @@ function world:draw_exploded_projectile(x,y,vx,vy)
   end)
 end
   
+--- Add a new circular explosion to the list of explosions.
+-- @param x X center of explosion
+-- @param y Y center of explosion
+-- @param size Size of the explosion - bigger will be also longer lasting
 function world:add_explosion(x,y,size)
   self.explosions[#self.explosions+1] = {
     x = x;
@@ -100,8 +109,15 @@ function world:add_explosion(x,y,size)
   }
 end
 
+--- Make a simulation step in which projectiles and tanks are receiving ticks and updates.
+-- Also triggers AI logic execution.
 function world:step()
+  local prevstate = self.draw_debug_info
+  -- To speed up the simulation we 
   for i=1,self.steps do
+    if i == self.steps then self.draw_debug_info = prevstate 
+    else self.draw_debug_info = false end
+    
     for i=#self.projectiles,1,-1 do
       local p = self.projectiles[i]
       p.age = p.age + 1

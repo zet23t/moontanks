@@ -7,11 +7,12 @@ constant = {
   MAX_TURNSPEED = .04;
   MAX_BEARSPEED = .08;
 }
-
+-- load the files we need to run the game
 dofile "world/util.lua"
 dofile "world/tank.lua"
 dofile "world/tankworld.lua"
 
+-- create our default world state and initialize it
 world_state = world:create()
 ais = {
   "ai/tank1.lua",

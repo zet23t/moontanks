@@ -133,6 +133,11 @@ function tank:create_ai_memory()
     love.graphics.setColor(r,g,b,255)
     love.graphics.line(x1,y1,x2,y2)
   end
+  function self.memory.dofile(filename)
+    local fn = assert(loadfile(filename))
+    setfenv(fn,self.memory)
+    return fn()
+  end
   
   -- What follows are some globals in the memory table.
   self.memory.pairs,self.memory.ipairs = pairs,ipairs
